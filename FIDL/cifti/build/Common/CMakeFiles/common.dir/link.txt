@@ -1,0 +1,2 @@
+/usr/bin/ar cr libCommon.a  CMakeFiles/Common.dir/AString.cxx.o CMakeFiles/Common.dir/BinaryFile.cxx.o CMakeFiles/Common.dir/CiftiException.cxx.o CMakeFiles/Common.dir/FloatMatrix.cxx.o CMakeFiles/Common.dir/MathFunctions.cxx.o CMakeFiles/Common.dir/Vector3D.cxx.o CMakeFiles/Common.dir/XmlAdapter.cxx.o
+/usr/bin/ranlib libCommon.a
