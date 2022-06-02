@@ -1,0 +1,29 @@
+if($CMD_LINE == TRUE || $VM == FALSE) then
+    set LMSTAT = ${IDL_DIR}/bin/lmstat
+    # Check for available licenses
+    set TOTAL_LICENSES = `$LMSTAT -A -c ${LICENSE_FILE} -f idl_rt | grep Total | gawk '{print $6/10}'`
+    set IN_USE = `$LMSTAT -A -c ${LICENSE_FILE} -f idl_rt | gawk 'BEGIN{num=0}{if($7 == "start") ++num}END{print num}'`
+    if($TOTAL_LICENSES > 0) then
+        set REMAINING = `expr $TOTAL_LICENSES - $IN_USE`
+        echo ""
+        echo $IN_USE out of $TOTAL_LICENSES idl licenses are in use.
+        echo ""
+    else
+        set REMAINING = 1000
+    endif
+    set USERS  = `$LMSTAT -A -c $LICENSE_FILE -f idl_rt | gawk '{if($7 == "start") print $1}'`
+    if($REMAINING == 0) then
+       echo "     ***************************************************"
+       echo "     *                                                 *"
+       echo "     *          ALL IDL LICENSES ARE IN USE            *"
+       echo "     *                                                 *"
+       echo "     *      Current users are: " $USERS
+       echo "     *                                                 *"
+       echo "     ***************************************************"
+       exit -1
+    else
+       echo " "
+       echo "Current users: " $USERS
+       echo " "
+    endif
+endif
