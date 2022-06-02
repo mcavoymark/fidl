@@ -1,0 +1,9 @@
+1	<filename root>
+17	Lhippo
+53	Rhippo
+65530	Lwm
+65531	Rwm
+65532	Lcsf
+65533	Rcsf
+65534	Lbrainmask
+65535	Rbrainmask
