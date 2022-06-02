@@ -1,0 +1,8 @@
+#Run in gsl-master directory
+cd gsl1.16/gsl-master
+./configure --prefix=/home/hannah/mcavoy/FIDL/gsl1.16
+make
+make check > check.log
+make install
+make clean     
+make distclean 
