@@ -1,0 +1,116 @@
+#Copyright 7/2/03 Washington University.  All Rights Reserved.
+#fidl_rt.txt  $Revision: 1.14 $
+
+# See fidl script for calling syntax. 
+
+setenv FIDL_ARCANE "FALSE"
+set FONT 
+setenv FIDL_DISPX 1024scrx
+setenv FIDL_DISPY 800scry
+
+#setenv MAC_OSX  "FALSE"
+#START110412
+setenv FIDLCOLORDEPTH 8 
+
+set CMD_LINE = FALSE
+set VM = FALSE
+
+set i = 1
+while ($i <= $#argv)
+
+    set y = ` echo $argv[$i] | grep pt$`
+    if($#y > 0) then
+        set FONT = $argv[$i]
+    endif
+
+    set y = ` echo $argv[$i] | grep scrx$`
+    if($#y > 0) then
+        #setenv FIDL_DISPX `echo $argv[$i]:s/x/ /` only works for tcsh, can't swap variables between shells
+        setenv FIDL_DISPX $argv[$i]
+    endif
+
+    set y = ` echo $argv[$i] | grep scry$`
+    if($#y > 0) then
+        #setenv FIDL_DISPY `echo $argv[$i]:s/y/ /` only works for tcsh, can't swap variables between shells
+        setenv FIDL_DISPY $argv[$i]
+    endif
+
+
+    #set y = ` echo $argv[$i] | grep 24color$`
+    #if($#y > 0) then
+    #    setenv MAC_OSX "TRUE"
+    #endif
+    #110415
+    set y = ` echo $argv[$i] | grep 24color$`
+    if($#y > 0) then
+        setenv FIDLCOLORDEPTH 24 
+    endif
+    set y = ` echo $argv[$i] | grep 16color$`
+    if($#y > 0) then
+        setenv FIDLCOLORDEPTH 16
+    endif
+
+
+    set y = ` echo $argv[$i] | grep cmd_line$`
+    if($#y > 0) then
+        set CMD_LINE = TRUE
+    endif
+
+    set y = ` echo $argv[$i] | grep vm$`
+    if($#y > 0) then
+        set VM = TRUE
+    endif
+
+    set y = ` echo $argv[$i] | grep arcane$`
+    if($#y > 0) then
+        setenv FIDL_ARCANE "TRUE"
+    endif
+
+    @ i++
+end
+
+set FONT_TEST = (12pt 14pt 16pt 18pt)
+setenv fontnum 0
+if($?FONT) then
+    set num = 1
+    foreach font_test ($FONT_TEST)
+        if($font_test == $FONT) then
+            set fontnum = $num
+        endif
+        set num = `expr $num + 1`
+    end
+    setenv FIDL_FONTNUM  $fontnum
+else
+    setenv FIDL_FONTNUM 0
+endif
+
+
+#if($CMD_LINE == TRUE || $VM == FALSE) then
+#    set LMSTAT = ${IDL_DIR}/bin/lmstat
+#    # Check for available licenses
+#    set TOTAL_LICENSES = `$LMSTAT -A -c ${LICENSE_FILE} -f idl_rt | grep Total | gawk '{print $6/10}'`
+#    set IN_USE = `$LMSTAT -A -c ${LICENSE_FILE} -f idl_rt | gawk 'BEGIN{num=0}{if($7 == "start") ++num}END{print num}'`
+#    if($TOTAL_LICENSES > 0) then
+#        set REMAINING = `expr $TOTAL_LICENSES - $IN_USE`
+#        echo ""
+#        echo $IN_USE out of $TOTAL_LICENSES idl licenses are in use.
+#        echo ""
+#    else
+#        set REMAINING = 1000
+#    endif
+#    set USERS  = `$LMSTAT -A -c $LICENSE_FILE -f idl_rt | gawk '{if($7 == "start") print $1}'`
+#    if($REMAINING == 0) then
+#       echo "     ***************************************************"
+#       echo "     *                                                 *"
+#       echo "     *          ALL IDL LICENSES ARE IN USE            *"
+#       echo "     *                                                 *"
+#       echo "     *      Current users are: " $USERS
+#       echo "     *                                                 *"
+#       echo "     ***************************************************"
+#       exit -1
+#    else
+#       echo " "
+#       echo "Current users: " $USERS
+#       echo " "
+#    endif
+#endif
