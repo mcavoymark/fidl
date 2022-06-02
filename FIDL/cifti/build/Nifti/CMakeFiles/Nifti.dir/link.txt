@@ -1,0 +1,2 @@
+/usr/bin/ar cr libNifti.a  CMakeFiles/Nifti.dir/NiftiHeader.cxx.o CMakeFiles/Nifti.dir/NiftiIO.cxx.o
+/usr/bin/ranlib libNifti.a

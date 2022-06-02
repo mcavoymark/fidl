@@ -1,0 +1,9 @@
+cmake ../CiftiLib-master
+make
+
+150701 built on linux1
+150820 /home/hannah/mcavoy/FIDL/cifti/CiftiLib-master/Cifti/VolumeSpace.cxx	
+           cerr << "last row of matrix in TransformationMatrixVoxelIndicesIJKtoXYZ is not 0 0 0 1" << endl; 
+           changed to
+           cout << "last row of matrix in TransformationMatrixVoxelIndicesIJKtoXYZ is not 0 0 0 1" << endl;
+           because segementation fault on icarus for "fidl" (ie release) but not "idl 8.3, main"
