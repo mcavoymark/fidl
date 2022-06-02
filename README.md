@@ -1,7 +1,7 @@
 # fidl
 Neuroimaging analysis software
 
-Three directories are included: c, idl and FIDL.<\n>
+Three directories are included: c, idl and FIDL.
 Most of the computing is done in C/C++ whose code resides in the "c" directory.
 The user interface is written in the IDL scripting language whose code resides in the "idl" directory.
 The FIDL directory includes 
