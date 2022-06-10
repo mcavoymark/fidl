@@ -12,3 +12,6 @@ The FIDL directory includes
 In addition fidl calls RSCRIPT with scripts written on the fly by the binaries:    
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;fidl_anova6.cxx calls the R lmerTest which calls the lme4 library.  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;fidl_pcat.c calls the RCUR library  
+
+It's greatest strengths are its general linear models, average statistics, repeated measures ANOVAs and linear mixed effects.  
+Now accepts Freesurfer style \*LUT.txt files to identify regions in niftis in addition to 4dfps with regions taking integer values from 2 upward.
